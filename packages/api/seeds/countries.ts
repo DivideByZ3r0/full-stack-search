@@ -25,3 +25,5 @@ export const countries = [
   { country: 'United Kingdom', countryisocode: 'GB' },
   { country: 'United States', countryisocode: 'US' },
 ];
+
+export default countries;

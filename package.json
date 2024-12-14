@@ -12,11 +12,12 @@
     "dev": "npm start",
     "test": "npm run -w client test",
     "api-no-watch": "npm run -w api dev:no-watch"
+
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
   },
   "dependencies": {
-    "axios": "^1.7.9"
+    "ts-node": "^10.9.2"
   }
 }

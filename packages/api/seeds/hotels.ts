@@ -564,3 +564,5 @@ export const hotels = [
     star_rating: 4,
   },
 ];
+
+export default hotels;

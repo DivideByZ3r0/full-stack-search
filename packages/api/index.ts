@@ -1,42 +1,23 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from 'cors';
-import { MongoClient } from "mongodb";
+import searchRoutes from "./routes/searchRoutes";
+import connectDB  from './config/db'
 
-dotenv.config();
+dotenv.config({path: './config/.env'});
 
-if (process.env.NODE_ENV !== 'production' && !process.env.DATABASE_URL) {
-  await import('./db/startAndSeedMemoryDB');
-}
-
-const PORT = process.env.PORT || 3001;
-if (!process.env.DATABASE_URL) throw new Error('DATABASE_URL is not set');
-const DATABASE_URL = process.env.DATABASE_URL;
-
+connectDB()
+const PORT = process.env.PORT || 5000;
 const app = express();
-// add colors
-// use router object
-// create controlers
-// create services
 
 app.use(cors())
 app.use(express.json());
 
-app.get('/hotels', async (req, res) => {
-  const mongoClient = new MongoClient(DATABASE_URL);
-  console.log('Connecting to MongoDB...');
+app.use('/api/v1/search', searchRoutes )
 
-  try {
-    await mongoClient.connect();
-    console.log('Successfully connected to MongoDB!');
-    const db = mongoClient.db()
-    const collection = db.collection('hotels');
-    res.send(await collection.find().toArray())
-  } finally {
-    await mongoClient.close();
-  }
-})
-
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`API Server Started at ${PORT}`)
 })
+
+// if database crases or some async call - i want app to crash
+process.on('uncaughtRejection', ((err, promise) => { console.log('Error: ', err.message); server.close(()=> process.exit(1)) }))

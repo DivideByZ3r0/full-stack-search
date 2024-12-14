@@ -1,9 +1,14 @@
 {
-  "name": "@monorepo/types",
+  "name": "types",
+  "type": "module",
   "version": "1.0.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "build": "tsc"
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "mongoose": "^8.9.0"
   }
 }

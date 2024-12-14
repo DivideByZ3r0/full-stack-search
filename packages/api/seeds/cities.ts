@@ -44,3 +44,5 @@ export const cities = [
   { name: 'Torremolinos' },
   { name: 'Visakhapatnam' },
 ];
+
+export default cities;

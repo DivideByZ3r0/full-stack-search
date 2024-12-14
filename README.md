@@ -102,8 +102,9 @@ Frontend improvements and features:
 9. use vite way to get variables
 10. Conenct state if opend with hotels in set states and cities. 
 11. Add keyboard control to the search bar
-
 12. make form for adding hotels if time allows
+13. Toaster and error boundry for error handling
+14. tests
 
 Backend improvements and features:
 1. Create routes with express router
@@ -115,6 +116,9 @@ Backend improvements and features:
 7. Create route for  hotels and cities in a state
 8. Create route for  hotels and in a city
 9. Bonus: try to find some additional infromation about city or a state with some free api as a gateway
+10. Error handling 
+11. Logging with morgan
+12. tests
 
 
 
