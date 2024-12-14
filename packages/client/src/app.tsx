@@ -6,6 +6,8 @@ type Hotel = { _id: string, chain_name: string; hotel_name: string; city: string
 const codeSandboxHost = getCodeSandboxHost(3001)
 const API_URL = codeSandboxHost ? `https://${codeSandboxHost}` : 'http://localhost:3001'
 
+
+// todo : move fetching logic to axios.
 const fetchAndFilterHotels = async (value: string) => {
   const hotelsData = await fetch(`${API_URL}/hotels`);
   const hotels = (await hotelsData.json()) as Hotel[];
@@ -19,6 +21,20 @@ const fetchAndFilterHotels = async (value: string) => {
 }
 
 function App() {
+
+  // move app logic to hook
+  // remove unreadable jsx
+  // split jsx
+  // imenuj bolje stvari
+  // dodaj funkcionalnost na search
+  // dodaj axios
+  // dodaj debounce
+  // granuliraj
+  // kreiraj servis za trazenj
+  // get typed
+  // napravi jos tri stranice hotel, country, city
+  // svaka od te tri stranice treba da vodi jednu na drugu, country i city trebaju da listaju sve hotele koji postoje
+  //
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const [showClearBtn, setShowClearBtn] = useState(false);
 

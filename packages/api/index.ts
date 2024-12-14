@@ -14,6 +14,10 @@ if (!process.env.DATABASE_URL) throw new Error('DATABASE_URL is not set');
 const DATABASE_URL = process.env.DATABASE_URL;
 
 const app = express();
+// add colors
+// use router object
+// create controlers
+// create services
 
 app.use(cors())
 app.use(express.json());

@@ -90,6 +90,34 @@ For larger or more time-intensive changes, you're welcome to outline your ideas 
 
 <!-- Write-up/conclusion section -->
 
+Frontend improvements and features: 
+1. Create axios singleton, can be ecapusulated if need arise. 
+2. Create all request with type safety.
+3. Share Types between frontend and backend
+4. Create full search page results
+5. Add query so searches can be shared
+6. Create router with react router
+7. Create better .env file
+8. create env variable constants manager
+9. use vite way to get variables
+10. Conenct state if opend with hotels in set states and cities. 
+11. Add keyboard control to the search bar
+
+12. make form for adding hotels if time allows
+
+Backend improvements and features:
+1. Create routes with express router
+2. Agregate search result in search 
+3. Create route for  cities and  a city 
+4. Create route for  states and  a state
+5. Create route for  hotels and  a hotel
+6. Create route for  hotel and  a hotels
+7. Create route for  hotels and cities in a state
+8. Create route for  hotels and in a city
+9. Bonus: try to find some additional infromation about city or a state with some free api as a gateway
+
+
+
 _When all the behaviour is implemented, feel free to add some observations or conclusions you like to share in the section_
 
 ### Database structure
