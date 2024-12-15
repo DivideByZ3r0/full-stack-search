@@ -8,6 +8,7 @@ import hotelsRoutes from "./routes/hotelsRouter";
 import countryRoutes from "./routes/countryRouter";
 import citiesRoutes from "./routes/citiesRouter";
 import connectDB from "./config/db";
+import errorHandler from "./middleware/errorMiddleware";
 
 dotenv.config({ path: "./config/.env" });
 
@@ -25,6 +26,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(limiter);
+app.use(errorHandler);
 
 const router = Router();
 
