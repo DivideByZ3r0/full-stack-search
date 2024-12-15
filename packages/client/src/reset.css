@@ -1,0 +1,10 @@
+a {
+    all: unset;
+    text-decoration: none;
+    color: inherit;
+}
+
+li {
+    all: unset;
+    list-style: none;
+}

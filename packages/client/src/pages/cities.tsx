@@ -1,30 +1,31 @@
 import { useEffect, useState } from "react";
-import { getHotels } from "../services/http/api.ts";
 import Loader from "../components/loader/loader.tsx";
-import { IHotel } from "types/src/hotels";
+import { getCities } from "../services/http/api.ts";
+import { ICity } from "types/src/cities";
 
-const Hotels = () => {
+const Cities = () => {
   const [loading, setLoading] = useState(true);
   const [Error, setError] = useState(false);
-  const [hotels, setHotels] = useState<IHotel[]>([]);
+  const [cities, setCities] = useState<ICity[]>([]);
 
   useEffect(() => {
-    getHotels()
-      .then((r) => setHotels(r.data))
+    getCities()
+      .then((r) => setCities(r.data))
       .catch(() => setError(true))
       .finally(() => setLoading(false));
   }, []);
 
   if (loading) return <Loader />;
   if (Error) return <p>Error while fetching</p>;
+
   return (
     <>
-      <div>Countries</div>
-      {hotels.map((h) => (
-        <div>{h.hotel_name}</div>
+      <div>Cities</div>
+      {cities.map((c) => (
+        <div>{c.name}</div>
       ))}
     </>
   );
 };
 
-export default Hotels;
+export default Cities;

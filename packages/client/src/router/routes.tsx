@@ -4,8 +4,10 @@ import Layout from "../layout/layout.tsx";
 import Search from "../pages/search.tsx";
 import Country from "../pages/country.tsx";
 import Hotel from "../pages/hotel.tsx";
+import City from "../pages/city.tsx";
 import Hotels from "../pages/hotels.tsx";
 import Countries from "../pages/countries.tsx";
+import Cities from "../pages/cities.tsx";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
       {
         path: "countries/:countryId",
         element: <Country />,
+      },
+      {
+        path: "cities/:cityId",
+        element: <City />,
+      },
+      {
+        path: "cities",
+        element: <Cities />,
       },
     ],
   },
