@@ -55,7 +55,7 @@ export const searchHotels = async (searchTerm: string) => {
         return {
             hotels: hotels,
             cities: cities,
-            countryes: countries,
+            countries: countries,
         };
     } catch (error) {
         console.error('[HotelsService]', error);
