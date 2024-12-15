@@ -1,15 +1,10 @@
-import express from 'express';
-import {MongoClient} from "mongodb";
+import express, { Request, Response } from 'express';
+import * as hotelsController from '../controllers/hotelsControllers';
 
 
 const router = express.Router();
 
-router.get('/hotels', async (req, res) => {
-console.log('hotels')
-})
-
-router.get('/hotels/:id', async (req, res) => {
-  console.log('/hotels/:id')
-})
+router.get('/',hotelsController.getAllHotels)
+router.get('/:id', hotelsController.getHotel);
 
 export default router;

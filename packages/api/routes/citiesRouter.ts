@@ -1,16 +1,12 @@
 import express from 'express';
-import {MongoClient} from "mongodb";
 
+import * as citiesController from '../controllers/citiesControllers';
 
 const router = express.Router();
 
-router.get('/cities', async (req, res) => {
-    console.log('cities')
-})
+router.get('/', citiesController.getAllCities)
 
-router.get('/cities/:id', async (req, res) => {
- console.log(req.params.id)
-})
+router.get('/:id', citiesController.getCity)
 
 
 export default router;
