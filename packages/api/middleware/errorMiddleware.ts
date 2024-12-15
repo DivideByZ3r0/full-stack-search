@@ -4,7 +4,7 @@ const INTERNAL_SERVER_ERROR_MESSAGE = "Internal Server Error";
 
 function errorHandler(
   error: Error,
-  _: Request,
+  __: Request,
   response: Response,
   _: NextFunction,
 ): void {
