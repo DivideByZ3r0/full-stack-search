@@ -14,7 +14,7 @@ const useSearch = () => {
 
   const fetchData = async (input: string) => {
     setShowClearBtn(true);
-    if (input.length > 2) {
+    if (input.length >= 2) {
       search(input)
         .then((r) => {
           setHotels(r.data.hotels);

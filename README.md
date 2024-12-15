@@ -88,7 +88,8 @@ For larger or more time-intensive changes, you're welcome to outline your ideas 
 
 ### Write-up
 
-
+<!-- Write-up/conclusion section -->
+How to start
 Steps to start the app:
 
 To install packages run `npm install`
@@ -97,10 +98,34 @@ To populate database with seeder data `npm run seed --workspace=api`
 
 To start the apps `npm start dev`
 
+What i've did:
+
+Since this is my first monorepo I had a blast. Let my imagination go whild and started piling up features. That was probably a mistake but it was fun. Lets summarise it:
+
+I believe that everyapp needs a good foundation, and its better to set up things properly instead of patching up things later. 
+
+Frontend: 
+Routing: I have added react router 6 with router object in /routes/router.tsx page. 
+Its a basic router object, relying on <Outlet /> for layout component.  
+I'm not paticullary good at the design but I patched up some navigation on top. 
+
+Search page is home page, and its most important feature. I reworked your search component a but, atomising "searchg dropdown" and utilising useClickOuside hook to close it. There are few functionality I have changed you changed. 
+
+There are pages for paticular city, state and hotel, rendering only name. I wanted to make it prettier but i was lacking time.
+Potential for improvement:  Better design, more data about cities, hotels or countries.
+
+I've also added pages for all cities, states and hotels. Its not required but made sense in my head. Because Im lacking time i havent finioshed it, but each item (country, citty or a hotel) should lead towards page for it.
+Potential for improvement:  Better design.
+
+For the fetching i created basic axios instance, and frontend service with all fetching functions. I handled loading, error and fetching with basic promise api (then, catch, finally), i found it easyer to write it that way.
+Potential for improvement:  Utilising react query library, for frontend caching
+
+useSearch hook is main hook of the app. All search logic is done there. IT uses debounce from lodash so it wont overload server with tons of request. I've also added for search to be triggered only if input has 2 or more caracters (also sort of  debounce).
 
 
 
-<!-- Write-up/conclusion section -->
+
+
 
 Frontend improvements and features: 
 1. Create axios singleton, can be ecapusulated if need arise. 
