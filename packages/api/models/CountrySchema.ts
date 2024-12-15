@@ -1,11 +1,11 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, {Schema} from 'mongoose';
+import {ICountry} from "types/src/countries";
 
-export interface ICountry extends Document {
-    name: string;
-}
+
 
 const countrySchema: Schema<ICountry> = new Schema<ICountry>({
-    name: { type: String, required: true, unique: true }, // Country name must be unique
+    country: { type: String, required: true, unique: true },
+    countryisocode: { type: String, required: true },
 });
 
 const Country = mongoose.model<ICountry>('Country', countrySchema);

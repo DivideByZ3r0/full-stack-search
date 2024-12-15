@@ -9,11 +9,11 @@ import citiesSeeds from "./seeds/cities";
 import countriesSeeds from "./seeds/countries";
 import hotelsSeeds from "./seeds/hotels";
 
-dotenv.config();
+dotenv.config({ path: './config/.env'});
 
 const seedData = async () => {
     try {
-        await mongoose.connect(process.env.MONGO_URI as string, {
+        await mongoose.connect(process.env.DATABASE_URI as string, {
         });
 
         console.log('Connected to MongoDB');
@@ -24,14 +24,15 @@ const seedData = async () => {
 
         console.log('Cleared existing data');
         // used insert since its seeders and it bypasses validation
-        const countries = await Country.insertMany(countriesSeeds);
-        console.log(`Seeded Countries: ${countries.map((c) => c.name).join(', ')}`);
 
         const cities = await City.insertMany(citiesSeeds);
-        console.log(`Seeded Cities: ${cities.map((c) => c.name).join(', ')}`);
+        console.log(`Seeded Cities`);
+
+        const countries = await Country.insertMany(countriesSeeds);
+        console.log(`Seeded Countries`);
 
         const hotels = await Hotel.insertMany(hotelsSeeds);
-        console.log(`Seeded Hotels: ${hotels.map((h) => h.name).join(', ')}`);
+        console.log(`Seeded Hotels`);
 
         console.log('Seeding completed successfully');
         process.exit();
@@ -41,4 +42,4 @@ const seedData = async () => {
     }
 };
 
-export default seedData;
+seedData();

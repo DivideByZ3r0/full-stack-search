@@ -88,6 +88,18 @@ For larger or more time-intensive changes, you're welcome to outline your ideas 
 
 ### Write-up
 
+
+Steps to start the app:
+
+To install packages run `npm install`
+
+To populate database with seeder data `npm run seed --workspace=api`
+
+To start the apps `npm start dev`
+
+
+
+
 <!-- Write-up/conclusion section -->
 
 Frontend improvements and features: 

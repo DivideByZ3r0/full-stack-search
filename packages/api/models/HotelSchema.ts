@@ -1,29 +1,17 @@
-import mongoose, { Schema, Document, Types } from 'mongoose';
-
-export interface IHotel extends Document {
-    chainName: string;
-    hotelName: string;
-    addressLine1: string;
-    addressLine2?: string;
-    zipCode: string;
-    city: Types.ObjectId;
-    state?: string;
-    country: Types.ObjectId;
-    countryIsoCode: string;
-    starRating: number;
-}
+import mongoose, { Schema } from 'mongoose';
+import {IHotel} from "types/src/hotels";
 
 const hotelSchema: Schema<IHotel> = new Schema<IHotel>({
-    chainName: { type: String, default: 'No chain', required: true },
-    hotelName: { type: String, required: true },
-    addressLine1: { type: String, required: true },
-    addressLine2: { type: String, default: '' },
-    zipCode: { type: String, required: true },
-    city: { type: mongoose.Schema.Types.ObjectId, ref: 'City', required: true },
+    chain_name: { type: String, default: 'No chain'},
+    hotel_name: { type: String, required: true },
+    addressline1: { type: String },
+    addressline2: { type: String, default: '' },
+    zipcode: { type: String},
+    city: { type: String, required: true },
     state: { type: String, default: '' },
-    country: { type: mongoose.Schema.Types.ObjectId, ref: 'Country', required: true },
-    countryIsoCode: { type: String, required: true },
-    starRating: { type: Number, min: 1, max: 5, required: true },
+    country: { type: String, required: true },
+    countryisocode: { type: String, required: true },
+    star_rating: { type: Number, min: 1, max: 5 },
 });
 
 const Hotel = mongoose.model<IHotel>('Hotel', hotelSchema);
