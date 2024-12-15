@@ -98,64 +98,92 @@ To populate database with seeder data `npm run seed --workspace=api`
 
 To start the apps `npm start dev`
 
-What i've did:
+### What I've Done:
 
-Since this is my first monorepo I had a blast. Let my imagination go whild and started piling up features. That was probably a mistake but it was fun. Lets summarise it:
+Since this is my first monorepo, I had a blast. I let my imagination go wild and started piling up features. That was probably a mistake, but it was fun. Let's summarize it:
 
-I believe that everyapp needs a good foundation, and its better to set up things properly instead of patching up things later. 
+I believe that every app needs a good foundation, and it's better to set things up properly instead of patching them up later.
 
-Frontend: 
-Routing: I have added react router 6 with router object in /routes/router.tsx page. 
-Its a basic router object, relying on <Outlet /> for layout component.  
-I'm not paticullary good at the design but I patched up some navigation on top. 
+---
 
-Search page is home page, and its most important feature. I reworked your search component a but, atomising "searchg dropdown" and utilising useClickOuside hook to close it. There are few functionality I have changed you changed. 
+### Frontend:
 
-There are pages for paticular city, state and hotel, rendering only name. I wanted to make it prettier but i was lacking time.
-Potential for improvement:  Better design, more data about cities, hotels or countries.
+**Routing:**  
+I added React Router 6 with a router object in the `/routes/router.tsx` file. It's a basic router object, relying on `<Outlet />` for the layout component.  
+I'm not particularly good at design, but I patched up some navigation on top.
 
-I've also added pages for all cities, states and hotels. Its not required but made sense in my head. Because Im lacking time i havent finioshed it, but each item (country, citty or a hotel) should lead towards page for it.
-Potential for improvement:  Better design.
+**Search Page:**  
+The search page is the home page, and it's the most important feature. I reworked your search component a bit, breaking it into smaller components like the "search dropdown," and utilized the `useClickOutside` hook to close it. There are a few functionality aspects I changed from what you had.
 
-For the fetching i created basic axios instance, and frontend service with all fetching functions. I handled loading, error and fetching with basic promise api (then, catch, finally), i found it easyer to write it that way.
-Potential for improvement:  Utilising react query library, for frontend caching
+**Other Pages:**
+- I created pages for a particular city, state, and hotel, which currently only render the name. I wanted to make them prettier, but I ran out of time.  
+  **Potential for improvement:** Better design, richer data about cities, hotels, or countries.
+- I also added pages for all cities, states, and hotels. This wasn't required but made sense in my head. Since I lacked time, I didn't finish it, but each item (country, city, or hotel) should navigate to its respective details page.  
+  **Potential for improvement:** Better design.
 
-useSearch hook is main hook of the app. All search logic is done there. IT uses debounce from lodash so it wont overload server with tons of request. I've also added for search to be triggered only if input has 2 or more caracters (also sort of  debounce).
+**Fetching:**  
+I created a basic Axios instance and a frontend service with all fetching functions. I handled loading, error, and fetching with the basic promise API (`then`, `catch`, `finally`). I found it easier to write this way.  
+**Potential for improvement:** Utilize a library like React Query for frontend caching, better data handling, and improved performance.
 
+**Custom Hook (`useSearch`):**  
+The `useSearch` hook is the main hook of the app. All search logic is implemented there. It uses lodash's `debounce` function to avoid overloading the server with too many requests. I also ensured the search is triggered only when the input has two or more characters (also functioning as a debounce mechanism).  
+**Potential for improvement:** Add a loading state and possibly refine error handling for this feature. I’m not sure if the user needs to see search errors—they might not need to know if something goes wrong on our end.
 
+---
 
+### Overall:
+The app doesn't have many features, so I added some to fill in the gaps. Since the requirements were pretty vague, I went with my instincts, focusing on creating a proper folder structure and foundational features. Most improvements can come from using a caching library like React Query to enhance performance and development.
 
+Also, i dont have any validation in the frontend since i dont have a lot of inputs or any post request, except the one i created for search ( but that one wasnt really nesesary)
+
+---
+
+### New workspace
+
+Since its monorepo, one of the best thing about it is sharing of schemas, types, validations, dtos and so on. So I've created simple types workspces (might be named better), since I notices in separate repos, sometimes when backend updates some response or some payload requrements, they do not ping frontend about it. With this workspace, since we are sharing validations, types and schemas - we will always be in sync. Mistake will be detected by typescript.
+
+---
+
+### Backend.
+
+My background utilises nest.js mostly on a background so i went with similar folder structure. Route with routers for each entity, controllers and services. 
+
+Since I was relying on mongoose i used its Schema structure when creating models for validation. 
+
+App does not have almost any payloads, so I didnt need any validation in runtime, i think mongoose build time validation was enough.
+
+I have added script plantSeeds.ts, script will initiate database population on initial run for development. Script runs on a `npm run seed --workspace=api` command
 
 
 Frontend improvements and features: 
-1. Create axios singleton, can be ecapusulated if need arise. 
-2. Create all request with type safety.
-3. Share Types between frontend and backend
-4. Create full search page results
-5. Add query so searches can be shared
-6. Create router with react router
-7. Create better .env file
-8. create env variable constants manager
-9. use vite way to get variables
-10. Conenct state if opend with hotels in set states and cities. 
-11. Add keyboard control to the search bar
-12. make form for adding hotels if time allows
-13. Toaster and error boundry for error handling
+1. Create axios singleton, can be ecapusulated if need arise. ✅
+2. Create all request with type safety. ❌
+3. Share Types between frontend and backend  ✅
+4. Create full search page results ❌
+5. Add query so searches can be shared ❌
+6. Create router with react router  ✅
+7. Create better .env file  ✅
+8. create env variable constants manager  ✅
+9. use vite way to get variables  ✅
+10. Conenct state if opend with hotels in set states and cities.   
+11. Add keyboard control to the search bar ❌
+12. make form for adding hotels if time allows ❌
+13. Toaster and error boundry for error handling ❌
 14. tests
 
 Backend improvements and features:
-1. Create routes with express router
-2. Agregate search result in search 
-3. Create route for  cities and  a city 
-4. Create route for  states and  a state
-5. Create route for  hotels and  a hotel
-6. Create route for  hotel and  a hotels
-7. Create route for  hotels and cities in a state
-8. Create route for  hotels and in a city
-9. Bonus: try to find some additional infromation about city or a state with some free api as a gateway
-10. Error handling 
-11. Logging with morgan
-12. tests
+1. Create routes with express router ✅
+2. Agregate search result in search  ✅
+3. Create route for  cities and  a city  ✅
+4. Create route for  states and  a state  ✅
+5. Create route for  hotels and  a hotel ✅
+6. Create route for  hotel and  a hotels ✅
+7. Create route for  hotels and cities in a state ✅
+8. Create route for  hotels and in a city ✅
+9. Bonus: try to find some additional infromation about city or a state with some free api as a gateway ❌
+10. Error handling  ❌
+11. Logging with morgan ❌
+12. tests ❌
 
 
 
