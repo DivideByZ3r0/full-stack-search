@@ -8,6 +8,7 @@ import City from "../pages/city.tsx";
 import Hotels from "../pages/hotels.tsx";
 import Countries from "../pages/countries.tsx";
 import Cities from "../pages/cities.tsx";
+import NotFound from "../pages/notFound.tsx";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
         element: <Cities />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 
