@@ -1,34 +1,32 @@
 import httpService from "./httpService.ts";
 
-
-
 export const search = (searchTerm: string) => {
-    return httpService.post(`/search`,  { searchTerm: searchTerm })
-}
+  return httpService.post(`/search/`, { searchTerm: searchTerm });
+};
 
 export const getHotel = (id: string) => {
-    return httpService.get(`/hotels/${id}`)
-}
+  return httpService.get(`/hotels/${id}`);
+};
 
 export const getCity = (id: string) => {
-    return httpService.get(`/cities/${id}`)
-}
+  return httpService.get(`/cities/${id}`);
+};
 
 export const getCountry = (id: string) => {
-    return httpService.get(`/countries/${id}`)
-}
+  return httpService.get(`/countries/${id}`);
+};
 
 export const getHotels = () => {
-    return  httpService.get(`/hotels/`)
-}
+  return httpService.get(`/hotels/`);
+};
 
 export const getCities = () => {
-    return httpService.get(`/cities/`)
-}
+  return httpService.get(`/cities/`);
+};
 
 export const getCountries = () => {
-    return httpService.get(`/countries/`)
-}
+  return httpService.get(`/countries/`);
+};
 
 // export const addHotel
 //     = () => {

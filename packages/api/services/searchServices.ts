@@ -16,39 +16,17 @@ export const searchAll = async (searchTerm: string) => {
           ],
         },
       },
-      {
-        $project: {
-          _id: 1,
-          type: "hotel",
-          name: "$hotel_name",
-          location: { city: "$city", country: "$country" },
-        },
-      },
     ]);
 
     const cities = await City.aggregate([
       {
         $match: { name: { $regex: regex } },
       },
-      {
-        $project: {
-          _id: 1,
-          type: "city",
-          name: "$name",
-        },
-      },
     ]);
 
     const countries = await Country.aggregate([
       {
         $match: { country: { $regex: regex } },
-      },
-      {
-        $project: {
-          _id: 1,
-          type: "country",
-          name: "$country",
-        },
       },
     ]);
 

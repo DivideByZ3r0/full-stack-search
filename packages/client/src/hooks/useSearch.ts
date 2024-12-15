@@ -1,24 +1,28 @@
-import { type ChangeEvent, useState } from "react";
-import { IHotel } from "../../../types/src/hotels";
-import { ICity } from "../../../types/src/cities";
-import { ICountry } from "../../../types/src/countries";
+import { useState } from "react";
+import { IHotel } from "types/src/hotels";
+import { ICity } from "types/src/cities";
+import { ICountry } from "types/src/countries";
 import { search } from "../services/http/api.ts";
 
 const useSearch = () => {
   const [hotels, setHotels] = useState<IHotel[]>([]);
   const [cities, setCities] = useState<ICity[]>([]);
   const [countries, setCountries] = useState<ICountry[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const [showClearBtn, setShowClearBtn] = useState(false);
 
-  const fetchData = async (event: ChangeEvent<HTMLInputElement>) => {
+  const fetchData = async (input: string) => {
     setShowClearBtn(true);
-    console.log("fetch data");
-    console.log(event);
-    setHotels([]);
-    setCities([]);
-    setCountries([]);
-    search(event.target.value).then((r) => console.log(r));
+
+    search(input)
+      .then((r) => {
+        setHotels(r.data.hotels);
+        setCities(r.data.cities);
+        setCountries(r.data.countries);
+      })
+      .catch((e) => console.log(e))
+      .finally(() => setLoading(false));
   };
 
   return {
@@ -27,6 +31,7 @@ const useSearch = () => {
     countries,
     fetchData,
     showClearBtn,
+    loading,
   };
 };
 
