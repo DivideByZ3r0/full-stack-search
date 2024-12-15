@@ -2,6 +2,7 @@ import { FC } from "react";
 import { IHotel } from "types/src/hotels";
 import { ICountry } from "types/src/countries";
 import { ICity } from "types/src/cities";
+import { Link } from "react-router-dom";
 
 interface ISearchResultDropdownProps {
   hotels: IHotel[];
@@ -17,10 +18,10 @@ const SearchResultDropdown: FC<ISearchResultDropdownProps> = ({
   const Hotels = hotels.length ? (
     hotels.map((hotel, index) => (
       <li key={index}>
-        <a href={`/hotels/${hotel._id}`} className="dropdown-item">
+        <Link to={`/hotels/${hotel._id}`} className="dropdown-item">
           <i className="fa fa-building mr-2"></i>
           {hotel.hotel_name}
-        </a>
+        </Link>
         <hr className="divider" />
       </li>
     ))
@@ -31,10 +32,10 @@ const SearchResultDropdown: FC<ISearchResultDropdownProps> = ({
   const Cities = cities.length ? (
     cities.map((city, index) => (
       <li key={index}>
-        <a href={`/hotels/${city._id}`} className="dropdown-item">
+        <Link to={`/hotels/${city._id}`} className="dropdown-item">
           <i className="fa fa-building mr-2"></i>
           {city.name}
-        </a>
+        </Link>
         <hr className="divider" />
       </li>
     ))
@@ -45,10 +46,10 @@ const SearchResultDropdown: FC<ISearchResultDropdownProps> = ({
   const Countries = countries.length ? (
     countries.map((country, index) => (
       <li key={index}>
-        <a href={`/hotels/${country._id}`} className="dropdown-item">
+        <Link to={`/hotels/${country._id}`} className="dropdown-item">
           <i className="fa fa-building mr-2"></i>
           {country.country}
-        </a>
+        </Link>
         <hr className="divider" />
       </li>
     ))

@@ -1,11 +1,14 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useRef } from "react";
 import useSearch from "../hooks/useSearch.ts";
 import SearchResultDropdown from "../components/searchResultCard/searchResultCard.tsx";
 import _ from "lodash";
+import useClickOutside from "../hooks/useClickOutside.tsx";
 
 const Search = () => {
   const { hotels, cities, countries, fetchData, showClearBtn } = useSearch();
   const [showDropdow, setShowDropdow] = useState(false);
+
+  const searchRef = useRef<HTMLDivElement>(null);
 
   const debouncedFetchData = useCallback(
     _.debounce((query: string) => fetchData(query), 900),
@@ -17,12 +20,14 @@ const Search = () => {
     debouncedFetchData(inputValue); // Call debounced fetch logic
   };
 
+  useClickOutside(searchRef, () => setShowDropdow(false));
+
   return (
     <div className="App">
       <div className="container">
         <div className="row height d-flex justify-content-center align-items-center">
           <div className="col-md-6">
-            <div className="dropdown">
+            <div className="dropdown" ref={searchRef}>
               <div className="form">
                 <i className="fa fa-search"></i>
                 <input
@@ -31,7 +36,6 @@ const Search = () => {
                   placeholder="Search accommodation..."
                   onChange={handleInputChange}
                   onFocus={() => setShowDropdow(true)}
-                  onBlur={() => setShowDropdow(false)}
                 />
                 {showClearBtn && (
                   <span className="left-pan">

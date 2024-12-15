@@ -14,15 +14,21 @@ const useSearch = () => {
 
   const fetchData = async (input: string) => {
     setShowClearBtn(true);
-
-    search(input)
-      .then((r) => {
-        setHotels(r.data.hotels);
-        setCities(r.data.cities);
-        setCountries(r.data.countries);
-      })
-      .catch((e) => console.log(e))
-      .finally(() => setLoading(false));
+    if (input.length > 2) {
+      search(input)
+        .then((r) => {
+          setHotels(r.data.hotels);
+          setCities(r.data.cities);
+          setCountries(r.data.countries);
+        })
+        .catch((e) => console.log(e))
+        .finally(() => setLoading(false));
+    }
+    if (input.length === 0) {
+      setHotels([]);
+      setCities([]);
+      setCountries([]);
+    }
   };
 
   return {
