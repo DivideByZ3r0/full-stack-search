@@ -1,10 +1,9 @@
-import express from 'express';
+import express from "express";
 
-import {searchHotels} from "../controllers/searchController";
+import { searchAll } from "../controllers/searchController";
 
 const router = express.Router();
 
-router.get('/hotels', searchHotels)
-
+router.post("/", searchAll);
 
 export default router;

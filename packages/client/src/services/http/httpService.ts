@@ -1,8 +1,8 @@
 import axios, { AxiosInstance } from 'axios';
+import {ENV} from '../constants/constants.ts'
 
-// can be encapsulated so a library can be switched later.
 const apiClient: AxiosInstance = axios.create({
-    baseURL: 'https://api.example.com', // dodaj url searcha
+    baseURL: `${ENV.API_URL}/api/v1/`,
     timeout: 5000,
     headers: {
         'Content-Type': 'application/json',
