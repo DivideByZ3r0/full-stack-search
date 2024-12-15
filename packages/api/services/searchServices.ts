@@ -1,5 +1,5 @@
 import Hotel from "../models/HotelSchema";
-import City from "../models/CountrySchema";
+import City from "../models/CitySchema";
 import Country from "../models/CountrySchema";
 
 export const searchAll = async (searchTerm: string) => {
